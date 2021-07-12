@@ -1,0 +1,39 @@
+{
+	"events": [
+		{
+			"character": "character-1626078827.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Sir knight do you know why are you here to day?"
+		},
+		{
+			"character": "character-1625994041.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "No sir."
+		},
+		{
+			"character": "character-1626078827.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You are here to day because I have a mission for you."
+		},
+		{
+			"character": "character-1626078827.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Today you are going to defeat the demon king!"
+		},
+		{
+			"character": "character-1626078827.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Specificlly with this artifact we just found!"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.2.5",
+		"file": "timeline-1626078421.json",
+		"name": "KingCutscene"
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"contains_albedo": false,
+	"resolution": 1024,
+	"src": {
+		"a": "res://Terrain_Raw/Ground037_2K_Roughness.png",
+		"normalmap_flip_y": true,
+		"rgb": "res://Terrain_Raw/Ground037_2K_Normal.png"
+	}
+}
