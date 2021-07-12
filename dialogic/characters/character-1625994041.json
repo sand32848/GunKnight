@@ -8,13 +8,17 @@
 	"name": "Knight",
 	"nickname": "",
 	"nickname_bool": false,
-	"offset_x": 0,
+	"offset_x": 200,
 	"offset_y": 0,
 	"portraits": [
 		{
 			"name": "Default",
 			"path": "res://addons/dialogic/Example Assets/portraits/df-1.png"
+		},
+		{
+			"name": "question",
+			"path": "res://addons/dialogic/Example Assets/portraits/df-2.png"
 		}
 	],
-	"scale": 100
+	"scale": 25
 }
