@@ -3,14 +3,14 @@
 		{
 			"character": "character-1626068787.json",
 			"event_id": "dialogic_001",
-			"portrait": "Default",
-			"text": "Good day Sir knight!"
+			"portrait": "",
+			"text": "What is that thing your holding?"
 		},
 		{
 			"character": "character-1625994041.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Good day to you to citizen!"
+			"text": "It is... some sort of contraption I think?"
 		},
 		{
 			"emit_signal": "0",
@@ -23,7 +23,7 @@
 	],
 	"metadata": {
 		"dialogic-version": "1.2.5",
-		"file": "timeline-1626058470.json",
-		"name": "First"
+		"file": "timeline-1626070555.json",
+		"name": "Second"
 	}
 }

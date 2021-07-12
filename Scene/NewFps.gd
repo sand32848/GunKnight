@@ -55,7 +55,7 @@ func _physics_process(delta):
 			interactUI.visible = true
 			if Input.is_action_just_pressed("Interact") and interactOnCooldown == false:
 				interacting = true
-				var new_dialog = Dialogic.start('First')
+				var new_dialog = Dialogic.start(target.dialouge)
 				add_child(new_dialog)
 				new_dialog.connect("dialogic_signal", self, 'dialogic_signal')
 		else:
