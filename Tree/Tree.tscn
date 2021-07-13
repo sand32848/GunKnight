@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="e" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )

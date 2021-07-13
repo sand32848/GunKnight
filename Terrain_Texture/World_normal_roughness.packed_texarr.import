@@ -1,0 +1,18 @@
+[remap]
+
+importer="hterrain_packed_texture_array_importer"
+type="TextureArray"
+path.s3tc="res://.import/World_normal_roughness.packed_texarr-a4381a9f2ef951690b68d182fc6096b7.s3tc.texarr"
+path.etc2="res://.import/World_normal_roughness.packed_texarr-a4381a9f2ef951690b68d182fc6096b7.etc2.texarr"
+
+[deps]
+
+source_file="res://Terrain_Texture/World_normal_roughness.packed_texarr"
+dest_files=[ "res://.import/World_normal_roughness.packed_texarr-a4381a9f2ef951690b68d182fc6096b7.s3tc.texarr", "res://.import/World_normal_roughness.packed_texarr-a4381a9f2ef951690b68d182fc6096b7.etc2.texarr" ]
+
+[params]
+
+compress/mode=1
+flags/repeat=1
+flags/filter=true
+flags/mipmaps=true

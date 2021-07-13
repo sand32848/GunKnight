@@ -1,20 +1,20 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scene/NewFps.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scene/Bad.gd" type="Script" id=2]
-[ext_resource path="res://M1/m1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scene/tree.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" type="Script" id=4]
 [ext_resource path="res://Scene/CutsceneCam.gd" type="Script" id=5]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=6]
 [ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=7]
 [ext_resource path="res://Terrain_Data/data.hterrain" type="Resource" id=8]
-[ext_resource path="res://Terrain_Texture/World_slot1_albedo_bump.packed_tex" type="Texture" id=9]
-[ext_resource path="res://Terrain_Texture/World_slot0_albedo_bump.packed_tex" type="Texture" id=10]
-[ext_resource path="res://Terrain_Texture/World_slot3_albedo_bump.packed_tex" type="Texture" id=11]
-[ext_resource path="res://Terrain_Texture/World_slot0_normal_roughness.packed_tex" type="Texture" id=12]
-[ext_resource path="res://Terrain_Texture/World_slot2_normal_roughness.packed_tex" type="Texture" id=13]
-[ext_resource path="res://Terrain_Texture/World_slot3_normal_roughness.packed_tex" type="Texture" id=14]
-[ext_resource path="res://Terrain_Texture/World_slot2_albedo_bump.packed_tex" type="Texture" id=15]
-[ext_resource path="res://Terrain_Texture/World_slot1_normal_roughness.packed_tex" type="Texture" id=16]
+[ext_resource path="res://Terrain_Texture/World_albedo_bump.packed_texarr" type="TextureArray" id=9]
+[ext_resource path="res://Terrain_Texture/World_normal_roughness.packed_texarr" type="TextureArray" id=10]
+[ext_resource path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" type="Texture" id=11]
+[ext_resource path="res://Terrain_Texture/grass.png" type="Texture" id=12]
+[ext_resource path="res://Scene/Wood.tres" type="Material" id=13]
+[ext_resource path="res://Scene/WallBrick.tres" type="Material" id=14]
+[ext_resource path="res://Scene/Castle.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -27,31 +27,48 @@ extents = Vector3( 1.066, 1.036, 1.04 )
 albedo_color = Color( 1, 0.494118, 0, 1 )
 
 [sub_resource type="ProceduralSky" id=5]
-radiance_size = 0
+radiance_size = 1
+sky_top_color = Color( 0.239216, 0.67451, 0.913725, 1 )
+sky_horizon_color = Color( 0.666667, 0.807843, 0.921569, 1 )
+sky_energy = 0.5
+ground_horizon_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Environment" id=6]
 background_mode = 2
 background_sky = SubResource( 5 )
-background_sky_orientation = Basis( 1, 0, 0, 0, 0.998497, -0.0548108, 0, 0.0548108, 0.998497 )
 background_color = Color( 0.419608, 0.419608, 0.419608, 1 )
-fog_color = Color( 0.219608, 0.313726, 0.298039, 1 )
-fog_sun_color = Color( 0, 0, 0, 1 )
+ambient_light_color = Color( 0.972549, 0.827451, 0.439216, 1 )
+ambient_light_energy = 1.34
+ambient_light_sky_contribution = 0.8
+fog_enabled = true
+fog_color = Color( 0.196078, 0.196078, 0.196078, 1 )
 fog_depth_end = 640.0
 fog_height_enabled = true
 fog_height_min = 40.0
 fog_height_max = -20.0
 tonemap_mode = 3
-ssao_enabled = true
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 7 )
-mode = 0
-textures = [ [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 11 ) ], [ ExtResource( 12 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 14 ) ] ]
+mode = 1
+textures = [ [ ExtResource( 9 ) ], [ ExtResource( 10 ) ] ]
+
+[sub_resource type="CubeMesh" id=8]
+material = ExtResource( 14 )
+size = Vector3( 30, 30, 4 )
+
+[sub_resource type="BoxShape" id=9]
+
+[sub_resource type="CubeMesh" id=10]
+material = ExtResource( 13 )
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 14.693, 10.8026, 1 )
 
 [node name="Spatial" type="Spatial"]
 
 [node name="NewFps" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 119.539, 4.47721, 79.9428 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 116.094, 4.47721, 79.9428 )
 
 [node name="bad" type="StaticBody" parent="." groups=[
 "Enemy",
@@ -109,7 +126,7 @@ material/0 = SubResource( 4 )
 shape = SubResource( 2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.811319, 0.584604, 0, -0.584604, 0.811319, 119.507, 34.8077, 143.655 )
+transform = Transform( 1, 0, 0, 0, 0.811319, 0.584604, 0, -0.584604, 0.811319, 127.061, 26.5721, 151.603 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 6 )
@@ -119,28 +136,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 119.539, 0, 167.943 )
 use_collision = true
 
 [node name="CSGBox2" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6025, 6.14984, -3.68451 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.1008, 4.78152, -3.68451 )
 width = 14.0544
 height = 9.34765
 depth = 20.5029
 
 [node name="CSGBox5" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.3975, 6.14984, -9.68451 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.3975, 4.78152, -9.68451 )
 width = 14.0544
 height = 9.34765
 depth = 20.5029
-
-[node name="CSGBox6" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -4.37114e-08, 0, -0.39, 0, 1, 0, 1, 0, -1.70474e-08, -37.3975, 22.1498, -62.9172 )
-width = 6.0
-height = 42.0
-depth = 114.0
-
-[node name="CSGBox26" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -4.37114e-08, 0, -0.347, 0, 1, 0, 1, 0, -1.51679e-08, 34.6025, 22.1498, -62.9172 )
-width = 6.0
-height = 42.0
-depth = 114.0
 
 [node name="CSGBox8" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( -4.37114e-08, 0, -0.39, 0, 1, 0, 1, 0, -1.70474e-08, 113.602, 22.1498, -62.9172 )
@@ -149,64 +154,16 @@ height = 42.0
 depth = 114.0
 
 [node name="CSGBox27" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -4.37114e-08, 0, -0.347, 0, 1, 0, 1, 0, -1.51679e-08, 185.602, 22.1498, -62.9172 )
+transform = Transform( -4.37114e-08, 0, -0.347, 0, 1, 0, 1, 0, -1.51679e-08, 209.155, 22.1498, -62.9172 )
 width = 6.0
 height = 42.0
 depth = 114.0
 
-[node name="CSGBox7" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 1.56948e-07, 0, -1.79527, 74.3781, 21.8675, -27.3808 )
+[node name="CSGBox30" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 2.4167e-07, 0, -0.792099, 0, 0.999999, 0, 1, 0, 2.19366e-07, 157, 21.2996, -159.441 )
 width = 6.0
 height = 42.0
-depth = 139.486
-
-[node name="CSGBox12" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -0.00108073, 0, 0.385976, 0, 1, 0, -0.999987, 0, -0.00902404, 55.3173, 21.8675, 98.0622 )
-width = 6.0
-height = 42.0
-depth = 114.0
-
-[node name="CSGBox14" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -0.00108073, 0, 0.385976, 0, 1, 0, -0.999987, 0, -0.00902404, 203.317, 21.8675, 98.0622 )
-width = 6.0
-height = 42.0
-depth = 114.0
-
-[node name="CSGBox15" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -0.00108073, 0, 0.385976, 0, 1, 0, -0.999987, 0, -0.00902404, 95.3173, 21.8675, 98.0622 )
-width = 6.0
-height = 42.0
-depth = 114.0
-
-[node name="CSGBox13" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -0.00108073, 0, 0.385976, 0, 1, 0, -0.999987, 0, -0.00902404, -55.6827, 21.8675, 98.0622 )
-width = 6.0
-height = 42.0
-depth = 114.0
-
-[node name="CSGBox11" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -4.37114e-08, 0, 4.376, 0, 1, 0, -1, 0, -1.91281e-07, 74.7936, 22.1498, 220.652 )
-width = 6.0
-height = 42.0
-depth = 66.0
-
-[node name="CSGBox9" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 1.56948e-07, 0, -1.79527, -76.7257, 22.1498, -22.1043 )
-width = 6.0
-height = 42.0
-depth = 133.919
-
-[node name="CSGBox22" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -1, 0, -1.34386e-07, 0, 1, 0, 1.50996e-07, 0, -0.89, -55.7257, 22.1498, -113.104 )
-width = 6.0
-height = 42.0
-depth = 114.0
-
-[node name="CSGBox23" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -1, 0, -1.34386e-07, 0, 1, 0, 1.50996e-07, 0, -0.89, 52.2743, 22.1498, -113.104 )
-width = 6.0
-height = 42.0
-depth = 114.0
+depth = 164.0
 
 [node name="CSGBox24" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( -1, 0, -1.34386e-07, 0, 1, 0, 1.50996e-07, 0, -0.89, 94.2743, 22.1498, -113.104 )
@@ -215,37 +172,19 @@ height = 42.0
 depth = 114.0
 
 [node name="CSGBox25" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -1, 0, -1.34386e-07, 0, 1, 0, 1.50996e-07, 0, -0.89, 202.274, 22.1498, -113.104 )
+transform = Transform( -1, 0, -1.34386e-07, 0, 1, 0, 1.50996e-07, 0, -0.89, 225.827, 22.1498, -113.104 )
 width = 6.0
 height = 42.0
 depth = 114.0
 
-[node name="CSGBox10" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 1.56948e-07, 0, -1.79527, 225.907, 22.1498, -22.1043 )
-width = 6.0
-height = 42.0
-depth = 154.336
-
-[node name="CSGBox16" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 1.56948e-07, 0, -1.79527, 197.907, 21.1498, 164.614 )
-width = 6.0
-height = 42.0
-depth = 72.0
-
-[node name="CSGBox17" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 1.56948e-07, 0, -1.79527, -55.0931, 22.1498, 160.614 )
-width = 6.0
-height = 42.0
-depth = 72.0
-
 [node name="CSGBox3" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6025, 6.14984, 28.3155 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9304, 4.78152, 35.9685 )
 width = 14.0544
 height = 9.34765
 depth = 20.5029
 
 [node name="CSGBox4" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -27.3975, 6.14984, 28.3155 )
+transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -27.3975, 4.78152, 28.3155 )
 width = 14.0544
 height = 9.34765
 depth = 20.5029
@@ -274,14 +213,8 @@ width = 14.0544
 height = 9.34765
 depth = 20.5029
 
-[node name="CSGBox28" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -129 )
-width = 18.0
-height = 4.0
-depth = 22.0
-
 [node name="CSGSphere" type="CSGSphere" parent="CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -124.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4156, 9.5671, -130.937 )
 radius = 3.0
 
 [node name="CutsceneCam" type="Camera" parent="."]
@@ -290,22 +223,246 @@ script = ExtResource( 5 )
 
 [node name="HTerrain" type="Spatial" parent="."]
 script = ExtResource( 6 )
+ambient_wind = 0.161
 _terrain_data = ExtResource( 8 )
 chunk_size = 64
 collision_enabled = true
 collision_layer = 1
 collision_mask = 1
-shader_type = "Classic4"
+shader_type = "MultiSplat16"
 custom_shader = null
 custom_globalmap_shader = null
 texture_set = SubResource( 7 )
-shader_params/u_ground_uv_scale_per_texture = Plane( 20, 20, 20, 20 )
+shader_params/u_ground_uv_scale = 20
 shader_params/u_depth_blending = true
-shader_params/u_triplanar = true
-shader_params/u_tile_reduction = Plane( 1, 1, 1, 1 )
 shader_params/u_globalmap_blend_start = null
 shader_params/u_globalmap_blend_distance = null
-shader_params/u_colormap_opacity_per_texture = Plane( 1, 1, 1, 1 )
+shader_params/u_tile_reduction = Plane( 1, 1, 1, 1 )
 
-[node name="m1" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 132.221, 11.7019, 134.835 )
+[node name="HTerrainDetailLayer" type="Spatial" parent="HTerrain"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 11 )
+}
+texture = ExtResource( 12 )
+view_distance = 500.0
+shader_params/u_globalmap_tint_bottom = null
+shader_params/u_globalmap_tint_top = null
+shader_params/u_bottom_ao = null
+shader_params/u_instance_scale = Vector3( 1, 1, 1 )
+
+[node name="TreeFolder" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.78352, 0 )
+
+[node name="Tree" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 0.927849, 0, -0.372955, 0, 1, 0, 0.372955, 0, 0.927849, 95.5004, 0.337936, 304.076 )
+
+[node name="Tree41" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 89.2206, 0.763245, 220.509 )
+
+[node name="Tree42" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 86.2026, 0.763245, 133.573 )
+
+[node name="Tree51" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 148.931, 0.763245, 234.205 )
+
+[node name="Tree43" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 145.498, 0.763245, 183.242 )
+
+[node name="Tree2" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 0.820501, 0, 0.571645, 0, 1, 0, -0.571645, 0, 0.820501, 105.236, 0.763245, 306.277 )
+
+[node name="Tree13" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 0.992703, 0, 0.120587, 0, 1, 0, -0.120587, 0, 0.992703, 155.69, 0.763245, 284.202 )
+
+[node name="Tree29" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 92.8815, 0.763245, 317.202 )
+
+[node name="Tree30" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 85.8815, 0.763245, 294.202 )
+
+[node name="Tree31" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 94.8815, 0.763245, 329.183 )
+
+[node name="Tree32" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 153.881, 0.763245, 289.936 )
+
+[node name="Tree33" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 164.881, 0.763245, 297.202 )
+
+[node name="Tree34" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 173.881, 0.763245, 308.202 )
+
+[node name="Tree35" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 195.881, 0.763245, 308.202 )
+
+[node name="Tree44" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 184.597, 0.763245, 311.326 )
+
+[node name="Tree45" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 162.115, 0.763245, 306.866 )
+
+[node name="Tree46" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 207.09, 0.763245, 304.783 )
+
+[node name="Tree47" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 151.625, 0.763245, 309.994 )
+
+[node name="Tree49" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 151.625, 0.763245, 321.928 )
+
+[node name="Tree50" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 161.012, 0.763245, 317.213 )
+
+[node name="Tree48" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 210.49, 1.14398, 314.69 )
+
+[node name="Tree36" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 0.764696, 0, -0.644391, 0, 1, 0, 0.644391, 0, 0.764696, 201.12, 0.763245, 356.81 )
+
+[node name="Tree37" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 164.881, 0.763245, 367.19 )
+
+[node name="Tree38" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 213.881, 0.763245, 362.202 )
+
+[node name="Tree39" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 0.886462, 0, -0.462801, 0, 1, 0, 0.462801, 0, 0.886462, 194.881, 0.763245, 361.616 )
+
+[node name="Tree16" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 229.385, -16.8819, 326.456 )
+
+[node name="Tree27" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 215.348, 0.763245, 321.488 )
+
+[node name="Tree20" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 212.881, 0.763245, 351.202 )
+
+[node name="Tree21" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 176.881, 0.763245, 363.436 )
+
+[node name="Tree22" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 157.881, 0.763245, 361.34 )
+
+[node name="Tree23" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 0.945536, 0, -0.325519, 0, 1, 0, 0.325519, 0, 0.945536, 138.568, 0.763245, 339.951 )
+
+[node name="Tree24" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 0.927125, 0, 0.374752, 0, 1, 0, -0.374752, 0, 0.927125, 144.944, 0.763245, 344.987 )
+
+[node name="Tree25" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 147.881, 0.763245, 353.202 )
+
+[node name="Tree26" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 117.881, 0.763245, 329.187 )
+
+[node name="Tree3" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 111.264, -0.0741501, 354.479 )
+
+[node name="Tree4" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 93.2639, -0.0741501, 337.44 )
+
+[node name="Tree6" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 92.2639, -0.0741501, 324.991 )
+
+[node name="Tree12" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 107.264, -0.0741501, 334.991 )
+
+[node name="Tree14" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 107.264, -0.0741501, 326.089 )
+
+[node name="Tree15" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 0.810921, 0, -0.585156, 0, 1, 0, 0.585156, 0, 0.810921, 124.343, -0.0741501, 335.914 )
+
+[node name="Tree7" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 0.843326, 0, -0.537403, 0, 1, 0, 0.537403, 0, 0.843326, 105.212, -0.0741501, 318.991 )
+
+[node name="Tree8" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 201.59, -0.0741501, 367.612 )
+
+[node name="Tree11" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 228.264, -0.0741501, 360.991 )
+
+[node name="Tree5" parent="TreeFolder" instance=ExtResource( 3 )]
+transform = Transform( 0.97239, 0, -0.233361, 0, 1, 0, 0.233361, 0, 0.97239, 84.2639, -0.0741501, 283.875 )
+
+[node name="Gate" type="Spatial" parent="."]
+
+[node name="GatePart" type="StaticBody" parent="Gate"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 87.448, 10.8874, 255.921 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Gate/GatePart"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01555, -3.65849, 0 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Gate/GatePart"]
+shape = SubResource( 9 )
+
+[node name="GatePart2" type="StaticBody" parent="Gate"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 147.238, 10.8874, 255.921 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Gate/GatePart2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.65849, 0 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Gate/GatePart2"]
+shape = SubResource( 9 )
+
+[node name="Spatial" type="Spatial" parent="Gate"]
+transform = Transform( 0.569064, 0, -0.822293, 0, 1, 0, 0.822293, 0, 0.569064, 104.444, 0, 256.917 )
+
+[node name="GateDoor" type="StaticBody" parent="Gate/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5862, 9.72244, -1.73224 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Gate/Spatial/GateDoor"]
+transform = Transform( 14.002, 0, 0, 0, 10.754, 0, 0, 0, 1, -0.899612, 0, 0.881378 )
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Gate/Spatial/GateDoor"]
+shape = SubResource( 11 )
+
+[node name="Gate2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 148.905, 0, 0 )
+
+[node name="GatePart" type="StaticBody" parent="Gate2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 87.448, 10.8874, 255.921 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Gate2/GatePart"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01555, -3.65849, 0 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Gate2/GatePart"]
+shape = SubResource( 9 )
+
+[node name="GatePart2" type="StaticBody" parent="Gate2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 147.238, 10.8874, 255.921 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Gate2/GatePart2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.65849, 0 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Gate2/GatePart2"]
+shape = SubResource( 9 )
+
+[node name="Spatial" type="Spatial" parent="Gate2"]
+transform = Transform( 0.513361, 0, 0.858173, 0, 1, 0, -0.858173, 0, 0.513361, 129.728, 0, 256.917 )
+
+[node name="GateDoor" type="StaticBody" parent="Gate2/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0878, 9.72244, -1.73224 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Gate2/Spatial/GateDoor"]
+transform = Transform( 14.002, 0, 0, 0, 10.754, 0, 0, 0, 1, 1.61539, -0.31111, 1.11761 )
+material_override = ExtResource( 13 )
+mesh = SubResource( 10 )
+material/0 = ExtResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Gate2/Spatial/GateDoor"]
+shape = SubResource( 11 )
+
+[node name="Castle" parent="." instance=ExtResource( 15 )]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 116.479, 0.915211, 66.7593 )

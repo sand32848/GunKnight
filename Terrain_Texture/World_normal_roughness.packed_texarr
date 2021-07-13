@@ -1,0 +1,36 @@
+{
+	"contains_albedo": false,
+	"layers": [
+		{
+			"a": "res://Texture_Raw/Ground037_2K_Roughness.png",
+			"normalmap_flip_y": true,
+			"rgb": "res://Texture_Raw/Ground037_2K_Normal.png"
+		},
+		{
+			"a": "res://Texture_Raw/Rocks007_2K_Roughness.png",
+			"normalmap_flip_y": true,
+			"rgb": "res://Texture_Raw/Rocks007_2K_Normal.png"
+		},
+		{
+			"a": "res://Texture_Raw/Rocks006_2K_Roughness.png",
+			"normalmap_flip_y": true,
+			"rgb": "res://Texture_Raw/Rocks006_2K_Normal.png"
+		},
+		{
+			"a": "res://Texture_Raw/Rock028_2K_Roughness.png",
+			"normalmap_flip_y": true,
+			"rgb": "res://Texture_Raw/Rock028_2K_Normal.png"
+		},
+		{
+			"a": "res://Texture_Raw/Gravel025_2K_Roughness.png",
+			"normalmap_flip_y": true,
+			"rgb": "res://Texture_Raw/Gravel025_2K_Normal.png"
+		},
+		{
+			"a": "res://Texture_Raw/Ground003_4K_Roughness.jpg",
+			"normalmap_flip_y": true,
+			"rgb": "res://Texture_Raw/Ground003_4K_Normal.jpg"
+		}
+	],
+	"resolution": 1024
+}

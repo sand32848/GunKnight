@@ -1,0 +1,8 @@
+{
+	"contains_albedo": true,
+	"resolution": 1024,
+	"src": {
+		"a": "res://Texture_Raw/Ground003_4K_Displacement.jpg",
+		"rgb": "res://Texture_Raw/Ground003_4K_Color.jpg"
+	}
+}
